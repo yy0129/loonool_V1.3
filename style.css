@@ -1,0 +1,274 @@
+/* style.css - 404 错误页 */
+
+:root {
+  --bg-body: #050816;
+  --bg-card: rgba(15, 23, 42, 0.85);
+  --border-subtle: rgba(148, 163, 184, 0.4);
+  --primary: #6366f1;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --text-soft: #6b7280;
+  --radius-xl: 18px;
+  --shadow-soft: 0 18px 55px rgba(15, 23, 42, 0.65);
+  --transition-fast: 0.18s ease-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1f2933 0, #020617 45%, #000 100%);
+  color: var(--text-main);
+}
+
+/* 背景光斑 + 噪点 */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+}
+
+body::before {
+  background: radial-gradient(
+      circle at 10% 0%,
+      rgba(96, 165, 250, 0.25),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(244, 63, 94, 0.3),
+      transparent 55%
+    );
+}
+
+body::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='noStitch'/%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  opacity: 0.7;
+}
+
+/* 顶部品牌条 */
+.app-header {
+  max-width: 960px;
+  margin: 24px auto 12px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.app-logo-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: conic-gradient(
+    from 180deg,
+    #6366f1,
+    #a855f7,
+    #ec4899,
+    #f97316,
+    #6366f1
+  );
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.85);
+}
+
+.app-title {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.app-sub {
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+/* 页面主容器 */
+.page-wrapper {
+  max-width: 960px;
+  margin: 0 auto 64px;
+  padding: 0 20px 32px;
+  display: flex;
+  justify-content: center;
+}
+
+/* 主卡片 */
+.card {
+  width: 100%;
+  margin-top: 12px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  background: linear-gradient(
+      135deg,
+      rgba(148, 163, 184, 0.12),
+      rgba(30, 64, 175, 0.22)
+    ),
+    var(--bg-card);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+  padding: 22px 24px 24px;
+}
+
+/* 卡片头部 */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.card-tag {
+  align-self: flex-start;
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  color: var(--text-muted);
+  background: radial-gradient(
+    circle at top left,
+    rgba(148, 163, 184, 0.35),
+    transparent 55%
+  );
+}
+
+/* 错误主体 */
+.error-main {
+  text-align: center;
+  padding: 24px 8px 8px;
+}
+
+.error-code {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #e5e7eb;
+  text-shadow: 0 0 40px rgba(148, 163, 184, 0.6);
+}
+
+.error-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.error-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+
+/* 按钮 */
+.btn {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    background var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: radial-gradient(
+      circle at 10% 0,
+      rgba(248, 250, 252, 0.2),
+      transparent 52%
+    ),
+    linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #f9fafb;
+  box-shadow: 0 12px 35px rgba(79, 70, 229, 0.7);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(79, 70, 229, 0.9);
+  background: linear-gradient(135deg, #4f46e5, #5458ff);
+}
+
+.btn-secondary {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.7);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(209, 213, 219, 0.85);
+}
+
+/* 按钮区域 */
+.error-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 底部提示 */
+.error-note {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.error-note code {
+  font-size: 11px;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .card {
+    padding: 18px 16px 20px;
+  }
+
+  .app-header {
+    margin: 18px auto 6px;
+  }
+
+  .error-code {
+    font-size: 52px;
+  }
+}
